@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="todo.css" />
+    <script src="js/vue.js"></script>
+    <script defer src="js/todo.js"></script>
+    <title>Dev ToDo</title>
+  </head>
+  <body>
+    <header>
+      <h1>Dev ToDo</h1>
+    </header>
+    <div class="d-flex" id="app">
+      <!-- БОКОВОЕ МЕНЮ -->
+      <aside>
+        <h1>Добавить этапы</h1>
+        <!-- ПОИСК ПО ЭЛЕМЕНТАМ -->
+        <div>
+          <input type="search" placeholder="Поиск по элементам" />
+        </div>
+        <ul>
+          <li><input type="checkbox" name="" id="" />Создание макета</li>
+          <li><input type="checkbox" name="" id="" />Создание репозитория</li>
+          <li><input type="checkbox" name="" id="" />Настройка проекта</li>
+          <li><input type="checkbox" name="" id="" />Подключение БД</li>
+          <li><input type="checkbox" name="" id="" />Разварачивание проекта</li>
+        </ul>
+      </aside>
+      <!-- Конетент -->
+      <main>
+        <h2>Древо разработки</h2>
+        <!-- СПИСОК  -->
+        <div>
+          <ul>
+            <li><input type="checkbox" name="" id="" />Создание макета</li>
+            <li><input type="checkbox" name="" id="" />Создание репозитория</li>
+            <ul>
+              <strong></strong>
+              <li>Гитхаб</li>
+              <li>Гитлаб</li>
+            </ul>
+            <li><input type="checkbox" name="" id="" />Настройка проекта</li>
+            <ul>
+              <li>Инициировать npm</li>
+              <li>Подключить пакеты</li>
+              <ul>
+                <li>eslint</li>
+                <li>react</li>
+              </ul>
+            </ul>
+
+            <li><input type="checkbox" name="" id="" />Подключение БД</li>
+            <li>
+              <input type="checkbox" name="" id="" />Разварачивание проекта
+            </li>
+          </ul>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
