@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="todo.css" />
+    <link rel="stylesheet" href="css/todo.css" />
+    <link rel="stylesheet" href="css/tree.css" />
     <script src="js/vue.js"></script>
     <script defer src="js/todo.js"></script>
     <title>Dev ToDo</title>
@@ -15,47 +16,52 @@
     </header>
     <div class="d-flex" id="app">
       <!-- БОКОВОЕ МЕНЮ -->
-      <aside>
-        <h1>Добавить этапы</h1>
+      <aside class="mr-3">
+        <h1>Поиск</h1>
         <!-- ПОИСК ПО ЭЛЕМЕНТАМ -->
         <div>
-          <input type="search" placeholder="Поиск по элементам" />
+          <input type="search" placeholder="Поиск по элементам" disabled />
         </div>
-        <ul>
-          <li><input type="checkbox" name="" id="" />Создание макета</li>
-          <li><input type="checkbox" name="" id="" />Создание репозитория</li>
-          <li><input type="checkbox" name="" id="" />Настройка проекта</li>
-          <li><input type="checkbox" name="" id="" />Подключение БД</li>
-          <li><input type="checkbox" name="" id="" />Разварачивание проекта</li>
-        </ul>
       </aside>
       <!-- Конетент -->
       <main>
         <h2>Древо разработки</h2>
         <!-- СПИСОК  -->
         <div>
-          <ul>
-            <li><input type="checkbox" name="" id="" />Создание макета</li>
-            <li><input type="checkbox" name="" id="" />Создание репозитория</li>
-            <ul>
-              <strong></strong>
-              <li>Гитхаб</li>
-              <li>Гитлаб</li>
-            </ul>
-            <li><input type="checkbox" name="" id="" />Настройка проекта</li>
-            <ul>
-              <li>Инициировать npm</li>
-              <li>Подключить пакеты</li>
-              <ul>
-                <li>eslint</li>
-                <li>react</li>
-              </ul>
-            </ul>
+          <!-- Dynamic Tree -->
+          <script type="text/x-template" id="item-template">
 
-            <li><input type="checkbox" name="" id="" />Подключение БД</li>
             <li>
-              <input type="checkbox" name="" id="" />Разварачивание проекта
+              <div
+                :class="{bold: isFolder}"
+                @click="toggle"
+                @dblclick="makeFolder"
+              >
+                {{ item.name }}
+                <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
+              </div>
+              <ul v-show="isOpen" v-if="isFolder">
+                <tree-item
+                  class="item"
+                  v-for="(child, index) in item.children"
+                  :key="index"
+                  :item="child"
+                  @make-folder="$emit('make-folder', $event)"
+                  @add-item="$emit('add-item', $event)"
+                ></tree-item>
+                <li class="add" @click="$emit('add-item', item)">+</li>
+              </ul>
             </li>
+          </script>
+
+          <!-- the demo root element -->
+          <ul id="demo">
+            <tree-item
+              class="item"
+              :item="treeData"
+              @make-folder="makeFolder"
+              @add-item="addItem"
+            ></tree-item>
           </ul>
         </div>
       </main>
