@@ -1,5 +1,5 @@
 // demo data
-var treeData = {
+let treeData = {
   name: 'Разработка',
   children: [
     { name: 'Создание макета' },
@@ -28,7 +28,7 @@ Vue.component('tree-item', {
   },
   data: function() {
     return {
-      isOpen: false
+      isOpen: true
     };
   },
   computed: {
@@ -52,9 +52,11 @@ Vue.component('tree-item', {
 });
 
 // boot up the demo
-var demo = new Vue({
+var app = new Vue({
   el: '#demo',
   data: {
+    newStage: 'Создание нового узла',
+    steps: ['Публикация', 'Возможные ошибки', 'Рефакторинг'],
     treeData: treeData
   },
   methods: {
