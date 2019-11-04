@@ -6,85 +6,130 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="css/todo.css" />
     <link rel="stylesheet" href="css/tree.css" />
-    <script src="js/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <script defer src="js/vue.js"></script>
+    <script
+      defer
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="js/todo.js"></script>
     <title>Dev ToDo</title>
   </head>
-  <body id="app">
-    <header>
-      <h1>Dev ToDo</h1>
-      <h4>
-        Позволяет создать вам инструкцию по вашему проекту и отправить коллегам!
-      </h4>
-    </header>
-    <div class="d-flex">
-      <!-- БОКОВОЕ МЕНЮ -->
-      <aside class="mr-3">
-        <h1>Поиск</h1>
-        <!-- ПОИСК ПО ЭЛЕМЕНТАМ -->
-        <div>
-          <input type="search" placeholder="Поиск по элементам" disabled />
-        </div>
-        <!-- Доступные этапы -->
-        <h1>Доступный этапы</h1>
-        <ul>
-          <li>Публикация</li>
-          <li>Возможные ошибки</li>
-          <li>Рефакторинг</li>
-        </ul>
-        <!-- {{ newStage }} -->
-        <input type="text" v-model="newStage" placeholder="Добавьте этап" />
-        <button @click="steps.push(newStage)">+</button>
-      </aside>
-      <!-- Конетент -->
-      <main>
-        <h2>Древо разработки</h2>
-        <div>
-          <button disabled>Сохранить</button>
-          <button disabled>Экспортировать</button>
-          <button disabled>Поделиться</button>
-          <button disabled>Рейтинг</button>
-          <button disabled>Редактировать</button>
-        </div>
-        <!-- СПИСОК  -->
-        <div>
-          <!-- Dynamic Tree -->
-          <script type="text/x-template" id="item-template">
-
-            <li>
-              <div
-                :class="{bold: isFolder}"
-                @click="toggle"
-                @dblclick="makeFolder"
-              >
-                <input type="text" v-model="item.name">
-                <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
-              </div>
-              <ul v-show="isOpen" v-if="isFolder">
-                <tree-item
-                  class="item"
-                  v-for="(child, index) in item.children"
-                  :key="index"
-                  :item="child"
-                  @make-folder="$emit('make-folder', $event)"
-                  @add-item="$emit('add-item', $event)"
-                ></tree-item>
-                <li class="add" @click="$emit('add-item', item)">+</li>
-              </ul>
-            </li>
-          </script>
-
-          <!-- the demo root element -->
-          <ul id="demo">
-            <tree-item
-              class="item"
-              :item="treeData"
-              @make-folder="makeFolder"
-              @add-item="addItem"
-            ></tree-item>
+  <body>
+    <div class="container" id="app">
+      <header>
+        <h2>Dev ToDo</h2>
+        <h4>
+          Позволяет создать вам инструкцию по вашему проекту и отправить
+          коллегам!
+        </h4>
+        <hr />
+      </header>
+      <div class="d-flex">
+        <!-- БОКОВОЕ МЕНЮ -->
+        <aside class="mr-3">
+          <h2>Поиск</h2>
+          <!-- ПОИСК ПО ЭЛЕМЕНТАМ -->
+          <div>
+            <input
+              type="search"
+              class="form-control"
+              placeholder="Поиск по элементам"
+              disabled
+            />
+          </div>
+          <!-- Доступные этапы -->
+          <h2>Доступный этапы</h2>
+          <ul>
+            <li>Публикация</li>
+            <li>Возможные ошибки</li>
+            <li>Рефакторинг</li>
           </ul>
-        </div>
-      </main>
+          <!-- {{ newStage }} -->
+          <input
+            type="text"
+            class="form-control"
+            v-model="newStage"
+            placeholder="Добавьте этап"
+          />
+          <button @click="steps.push(newStage)" class="btn btn-primary">
+            +
+          </button>
+        </aside>
+        <!-- Конетент -->
+        <main>
+          <h2>Древо разработки</h2>
+          <div>
+            <button class="btn  btn-outline-primary" disabled>Сохранить</button>
+            <button class="btn btn-outline-primary" disabled>
+              Экспортировать
+            </button>
+            <button class="btn btn-outline-primary" disabled>Поделиться</button>
+            <button class="btn btn-outline-primary" disabled>Рейтинг</button>
+            <button class="btn btn-outline-primary" disabled>
+              Редактировать
+            </button>
+          </div>
+          <!-- СПИСОК  -->
+          <div>
+            <!-- Dynamic Tree -->
+            <script type="text/x-template" id="item-template">
+
+              <li>
+                <div
+                  :class="{bold: isFolder}"
+                  @click="toggle"
+                  @dblclick="makeFolder"
+                >
+                  <input class="form-control" type="text" v-model="item.name">
+                  <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
+                </div>
+                <ul v-show="isOpen" v-if="isFolder">
+                  <tree-item
+                    class="item"
+                    v-for="(child, index) in item.children"
+                    :key="index"
+                    :item="child"
+                    @make-folder="$emit('make-folder', $event)"
+                    @add-item="$emit('add-item', $event)"
+                  ></tree-item>
+                  <li class="add" @click="$emit('add-item', item)">+</li>
+                </ul>
+              </li>
+            </script>
+
+            <!-- the demo root element -->
+            <ul id="demo">
+              <tree-item
+                class="item"
+                :item="treeData"
+                @make-folder="makeFolder"
+                @add-item="addItem"
+              ></tree-item>
+            </ul>
+          </div>
+        </main>
+      </div>
     </div>
   </body>
 </html>
