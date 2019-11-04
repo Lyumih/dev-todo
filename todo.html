@@ -10,11 +10,14 @@
     <script defer src="js/todo.js"></script>
     <title>Dev ToDo</title>
   </head>
-  <body>
+  <body id="app">
     <header>
       <h1>Dev ToDo</h1>
+      <h4>
+        Позволяет создать вам инструкцию по вашему проекту и отправить коллегам!
+      </h4>
     </header>
-    <div class="d-flex" id="app">
+    <div class="d-flex">
       <!-- БОКОВОЕ МЕНЮ -->
       <aside class="mr-3">
         <h1>Поиск</h1>
@@ -22,10 +25,27 @@
         <div>
           <input type="search" placeholder="Поиск по элементам" disabled />
         </div>
+        <!-- Доступные этапы -->
+        <h1>Доступный этапы</h1>
+        <ul>
+          <li>Публикация</li>
+          <li>Возможные ошибки</li>
+          <li>Рефакторинг</li>
+        </ul>
+        <!-- {{ newStage }} -->
+        <input type="text" v-model="newStage" placeholder="Добавьте этап" />
+        <button @click="steps.push(newStage)">+</button>
       </aside>
       <!-- Конетент -->
       <main>
         <h2>Древо разработки</h2>
+        <div>
+          <button disabled>Сохранить</button>
+          <button disabled>Экспортировать</button>
+          <button disabled>Поделиться</button>
+          <button disabled>Рейтинг</button>
+          <button disabled>Редактировать</button>
+        </div>
         <!-- СПИСОК  -->
         <div>
           <!-- Dynamic Tree -->
@@ -37,7 +57,7 @@
                 @click="toggle"
                 @dblclick="makeFolder"
               >
-                {{ item.name }}
+                <input type="text" v-model="item.name">
                 <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
               </div>
               <ul v-show="isOpen" v-if="isFolder">
