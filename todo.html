@@ -60,12 +60,9 @@
           </div>
           <!-- Доступные этапы -->
           <h2>Доступный этапы</h2>
-          <ul>
-            <li>Публикация</li>
-            <li>Возможные ошибки</li>
-            <li>Рефакторинг</li>
+          <ul v-for="step in steps">
+            <li>{{ step }}</li>
           </ul>
-          <!-- {{ newStage }} -->
           <input
             type="text"
             class="form-control"
