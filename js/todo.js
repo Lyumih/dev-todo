@@ -53,9 +53,9 @@ Vue.component('tree-item', {
 
 // boot up the demo
 var app = new Vue({
-  el: '#demo',
+  el: '#app',
   data: {
-    newStage: 'Создание нового узла',
+    newStage: '',
     steps: ['Публикация', 'Возможные ошибки', 'Рефакторинг'],
     treeData: treeData
   },
