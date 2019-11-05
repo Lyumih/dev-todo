@@ -37,18 +37,29 @@
   </head>
   <body>
     <div class="container" id="app">
-      <header>
+      <header class="pt-3">
         <h2>Dev ToDo</h2>
-        <h4>
-          Позволяет создать вам инструкцию по вашему проекту и отправить
-          коллегам!
-        </h4>
+        <blockquote class="blockquote">
+          <p class="mb-0">
+            Позволяет создать вам инструкцию по вашему проекту и отправить
+            коллегам!
+          </p>
+          <footer class="blockquote-footer">
+            Мы на GitHub
+              <cite title="Source Title"
+                ><a href="https://github.com/Lyumih/dev-todo">https://github.com/Lyumih/dev-todo</a></cite
+              >
+            
+          </footer>
+        </blockquote>
+        <h4></h4>
+        <blockquote class="text-right blockquote"></blockquote>
         <hr />
       </header>
-      <div class="d-flex">
+      <div class="d-flex mt-4">
         <!-- БОКОВОЕ МЕНЮ -->
-        <aside class="mr-3">
-          <h2>Поиск</h2>
+        <aside class="mr-5">
+          <h2 class="text-center">Поиск</h2>
           <!-- ПОИСК ПО ЭЛЕМЕНТАМ -->
           <div>
             <input
@@ -59,7 +70,7 @@
             />
           </div>
           <!-- Доступные этапы -->
-          <h2>Доступный этапы</h2>
+          <h2 class="text-center">Доступный этапы</h2>
           <ul v-for="step in steps">
             <li>{{ step }}</li>
           </ul>
@@ -75,7 +86,7 @@
         </aside>
         <!-- Конетент -->
         <main>
-          <h2>Древо разработки</h2>
+          <h2 class="text-center">Древо разработки</h2>
           <div>
             <button class="btn  btn-outline-primary" disabled>Сохранить</button>
             <button class="btn btn-outline-primary" disabled>
