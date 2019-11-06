@@ -6,6 +6,9 @@ mongoose.connect('mongodb://localhost/test', {
 });
 
 const Cat = mongoose.model('Cat', { name: String });
-const kitty = new Cat({ name: 'Zildjian' });
-kitty.save().then(() => console.log('meow'));
+const kitty = new Cat({ name: 'Zildjian' + Math.random() });
+kitty.save().then(() => {
+  console.log('Meow');
+  mongoose.connection.close();
+});
 console.log('END');
