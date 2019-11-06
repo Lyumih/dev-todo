@@ -37,16 +37,16 @@ let treeData = {
       name: 'Настройка проекта',
       children: [
         {
-          name: 'Инициировать npm'
+          name: 'Инициировать npm',
         },
         {
           name: 'Подключить пакеты',
-          children: [{ name: 'eslint' }, { name: 'react' }]
+          children: [{ name: 'eslint' }, { name: 'react' }],
         },
-        { name: 'Тестовый запуск' }
-      ]
-    }
-  ]
+        { name: 'Тестовый запуск' },
+      ],
+    },
+  ],
 };
 
 let leafData = ['Публикация', 'Возможные ошибки', 'Рефакторинг'];

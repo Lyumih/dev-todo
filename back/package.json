@@ -10,6 +10,9 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.4"
   },
   "scripts": {
