@@ -17,12 +17,14 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) return console.log(err);
-    let port = process.env.PORT || 5000;
-    app.listen(port, () => {
-      console.log('Сервер ожидает подключения...', port);
-    });
+
   },
 );
+
+let port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log('Сервер ожидает подключения...', port);
+});
 
 const treeRoute = require('./routes/tree')
 const leafRoute = require('./routes/leaf')
