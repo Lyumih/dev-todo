@@ -1,6 +1,9 @@
+require('dotenv').config();
+console.log(process.env.DB_URL)
 // Тестовый скрипт работоспособности MongoDB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/dev-todo', {
+
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -30,6 +33,6 @@ const User = mongoose.model('User', {
 User.insertMany(userData).then(() => {
   console.log('Created!');
   mongoose.connection.close();
-});
+}).catch(e=>console.log(e));
 // tree.save()
 console.log('END');
