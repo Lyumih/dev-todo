@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 
 
 mongoose.connect(
-  'mongodb://localhost:27017/dev-todo',
+  process.env.DB_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) return console.log(err);
