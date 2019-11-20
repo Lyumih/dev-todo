@@ -8,33 +8,33 @@ let treeData = {
       name: 'Настройка проекта',
       children: [
         {
-          name: 'Инициировать npm'
+          name: 'Инициировать npm',
         },
         {
           name: 'Подключить пакеты',
-          children: [{ name: 'eslint' }, { name: 'react' }]
+          children: [{ name: 'eslint' }, { name: 'react' }],
         },
-        { name: 'Тестовый запуск' }
-      ]
-    }
-  ]
+        { name: 'Тестовый запуск' },
+      ],
+    },
+  ],
 };
 
 // define the tree-item component
 Vue.component('tree-item', {
   template: '#item-template',
   props: {
-    item: Object
+    item: Object,
   },
   data: function() {
     return {
-      isOpen: true
+      isOpen: true,
     };
   },
   computed: {
     isFolder: function() {
       return this.item.children && this.item.children.length;
-    }
+    },
   },
   methods: {
     toggle: function() {
@@ -47,8 +47,8 @@ Vue.component('tree-item', {
         this.$emit('make-folder', this.item);
         this.isOpen = true;
       }
-    }
-  }
+    },
+  },
 });
 
 // boot up the demo
@@ -56,9 +56,14 @@ var app = new Vue({
   el: '#app',
   data: {
     newStage: '',
+    treeList: [],
     steps: ['Публикация', 'Возможные ошибки', 'Рефакторинг'],
-    treeData: treeData
+    treeData: treeData,
   },
+  // mounted(){
+  //
+  //
+  // },
   methods: {
     makeFolder: function(item) {
       Vue.set(item, 'children', []);
@@ -66,8 +71,19 @@ var app = new Vue({
     },
     addItem: function(item) {
       item.children.push({
-        name: 'new stuff'
+        name: 'new stuff',
       });
+    },
+    fetchTreeList: async function() {
+      console.log('work')
+
+      let response  = await fetch('/api/tree/');
+      let data = await response.json()
+      console.log(data)
+      this.treeList = data;
+    },
+    useTree: function(index) {
+      this.treeData = this.treeList[index]
     }
-  }
+  },
 });

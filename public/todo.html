@@ -138,6 +138,16 @@
           </div>
         </main>
       </div>
+      <footer>
+        <hr>
+        <h3>
+          Доступные инструкции
+        </h3>
+        <button class="btn btn-primary" @click="fetchTreeList">Загрузить список</button>
+        <ul>
+          <li v-for="(tree, index) in treeList"><button @click="useTree(index)">+</button> {{tree.name}} {{tree._id}}</li>
+        </ul>
+      </footer>
     </div>
   </body>
 </html>

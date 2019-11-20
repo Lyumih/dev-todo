@@ -1,8 +1,17 @@
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose');
 
-router.get('/', (req, res) => {
-  res.json([treeData, treeData, treeData]);
+const { Schema } = mongoose;
+const treeScheme = new Schema({ treeJson: String});
+const Tree = mongoose.model('Tree', treeScheme);
+
+router.get('/', async (req, res) => {
+  // res.send("Бла бла Хеллоу Ворлд")
+  const trees = await Tree.find({});
+  console.log(trees)
+
+  res.json(trees);
 });
 
 router.get('/:id', (req, res) => {
